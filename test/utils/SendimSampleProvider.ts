@@ -1,12 +1,16 @@
-import {SendiTransportInterface,RawMailOptions,TransactionalMailOptions} from "../../src";
+import {
+  RawMailOptions,
+  SendimTransportInterface,
+  TransactionalMailOptions,
+} from '../../src';
 
-export interface SendiSampleProviderConfig {
+export interface SendimSampleProviderConfig {
   test: string;
 }
-export class SendiSampleProvider implements SendiTransportInterface {
+export class SendimSampleProvider implements SendimTransportInterface {
   providerName = 'sample';
 
-  constructor(public config: SendiSampleProviderConfig) {}
+  constructor(public config: SendimSampleProviderConfig) {}
 
   async isHealthy() {
     return true;
@@ -21,10 +25,12 @@ export class SendiSampleProvider implements SendiTransportInterface {
   }
 }
 
-export class SendiSampleProviderNotHealthy implements SendiTransportInterface {
+export class SendimSampleProviderNotHealthy
+  implements SendimTransportInterface
+{
   providerName = 'sample';
 
-  constructor(public config: SendiSampleProviderConfig) {}
+  constructor(public config: SendimSampleProviderConfig) {}
 
   async isHealthy() {
     return false;
@@ -38,4 +44,3 @@ export class SendiSampleProviderNotHealthy implements SendiTransportInterface {
     console.log(options);
   }
 }
-

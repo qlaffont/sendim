@@ -1,113 +1,148 @@
-import { Sendi } from '../src';
 import { describe, expect, it } from '@jest/globals';
-import { SendiSampleProviderConfig,SendiSampleProvider, SendiSampleProviderNotHealthy } from './utils/SendiSampleProvider';
 
-describe('Sendi', () => {
+import { Sendim } from '../src';
+import {
+  SendimSampleProvider,
+  SendimSampleProviderConfig,
+  SendimSampleProviderNotHealthy,
+} from './utils/SendimSampleProvider';
+
+describe('Sendim', () => {
   it('should be Defined', () => {
-    expect(Sendi).toBeDefined()
+    expect(Sendim).toBeDefined();
   });
 
-  it('should be able to define log',  () => {
-    expect(new Sendi('debug')).toBeDefined();
-  })
-
-  it('should be able to add transport',  async () => {
-    let sendi = new Sendi();
-
-    await sendi.addTransport<SendiSampleProviderConfig>(SendiSampleProvider, {test: ""});
-
-    expect(sendi).toBeDefined();
-    expect(sendi.transports).toBeDefined();
-    expect(Object.keys(sendi.transports)).toHaveLength(1);
-
-    sendi = new Sendi();
-
-    await sendi.addTransport<SendiSampleProviderConfig>(SendiSampleProviderNotHealthy, {test: ""});
-
-    expect(sendi).toBeDefined();
-    expect(sendi.transports).toBeDefined();
-    expect(Object.keys(sendi.transports)).toHaveLength(0);
+  it('should be able to define log', () => {
+    expect(new Sendim('debug')).toBeDefined();
   });
 
-  it('should be able to send raw email',  async () => {
-    const sendi = new Sendi();
+  it('should be able to add transport', async () => {
+    let sendim = new Sendim();
 
-    expect(sendi.sendRawMail).toBeDefined();
+    await sendim.addTransport<SendimSampleProviderConfig>(
+      SendimSampleProvider,
+      { test: '' },
+    );
 
-    await sendi.sendRawMail({
+    expect(sendim).toBeDefined();
+    expect(sendim.transports).toBeDefined();
+    expect(Object.keys(sendim.transports)).toHaveLength(1);
+
+    sendim = new Sendim();
+
+    await sendim.addTransport<SendimSampleProviderConfig>(
+      SendimSampleProviderNotHealthy,
+      { test: '' },
+    );
+
+    expect(sendim).toBeDefined();
+    expect(sendim.transports).toBeDefined();
+    expect(Object.keys(sendim.transports)).toHaveLength(0);
+  });
+
+  it('should be able to send raw email', async () => {
+    const sendim = new Sendim();
+
+    expect(sendim.sendRawMail).toBeDefined();
+
+    await sendim.sendRawMail({
       textContent: '',
       htmlContent: '',
       subject: '',
-      to: [{
-        email: 'test@test.fr'
-      }],
+      to: [
+        {
+          email: 'test@test.fr',
+        },
+      ],
       sender: {
-        email: 'test@test.fr'
-      }
+        email: 'test@test.fr',
+      },
     });
 
-    await sendi.addTransport<SendiSampleProviderConfig>(SendiSampleProvider, {test: ""});
+    await sendim.addTransport<SendimSampleProviderConfig>(
+      SendimSampleProvider,
+      { test: '' },
+    );
 
-    await sendi.sendRawMail({
+    await sendim.sendRawMail({
       textContent: '',
       htmlContent: '',
       subject: '',
-      to: [{
-        email: 'test@test.fr'
-      }],
+      to: [
+        {
+          email: 'test@test.fr',
+        },
+      ],
       sender: {
-        email: 'test@test.fr'
-      }
+        email: 'test@test.fr',
+      },
     });
 
-    await sendi.sendRawMail({
-      textContent: '',
-      htmlContent: '',
-      subject: '',
-      to: [{
-        email: 'test@test.fr'
-      }],
-      sender: {
-        email: 'test@test.fr'
-      }
-    }, 'sample');
+    await sendim.sendRawMail(
+      {
+        textContent: '',
+        htmlContent: '',
+        subject: '',
+        to: [
+          {
+            email: 'test@test.fr',
+          },
+        ],
+        sender: {
+          email: 'test@test.fr',
+        },
+      },
+      'sample',
+    );
   });
 
-  it('should be able to send transactional email',  async () => {
-    const sendi = new Sendi();
+  it('should be able to send transactional email', async () => {
+    const sendim = new Sendim();
 
-    expect(sendi.sendTransactionalMail).toBeDefined();
+    expect(sendim.sendTransactionalMail).toBeDefined();
 
-    await sendi.sendTransactionalMail({
+    await sendim.sendTransactionalMail({
       templateId: 'test',
-      to: [{
-        email: 'test@test.fr'
-      }],
+      to: [
+        {
+          email: 'test@test.fr',
+        },
+      ],
       sender: {
-        email: 'test@test.fr'
-      }
+        email: 'test@test.fr',
+      },
     });
 
-    await sendi.addTransport<SendiSampleProviderConfig>(SendiSampleProvider, {test: ""});
+    await sendim.addTransport<SendimSampleProviderConfig>(
+      SendimSampleProvider,
+      { test: '' },
+    );
 
-    await sendi.sendTransactionalMail({
+    await sendim.sendTransactionalMail({
       templateId: 'test',
-      to: [{
-        email: 'test@test.fr'
-      }],
+      to: [
+        {
+          email: 'test@test.fr',
+        },
+      ],
       sender: {
-        email: 'test@test.fr'
-      }
+        email: 'test@test.fr',
+      },
     });
 
-    await sendi.sendTransactionalMail({
-      templateId: 'test',
-      to: [{
-        email: 'test@test.fr'
-      }],
-      sender: {
-        email: 'test@test.fr'
-      }
-    }, 'sample');
+    await sendim.sendTransactionalMail(
+      {
+        templateId: 'test',
+        to: [
+          {
+            email: 'test@test.fr',
+          },
+        ],
+        sender: {
+          email: 'test@test.fr',
+        },
+      },
+      'sample',
+    );
   });
 });

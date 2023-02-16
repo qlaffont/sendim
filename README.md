@@ -1,19 +1,19 @@
-[![Test Coverage](https://api.codeclimate.com/v1/badges/6be8e53efc66aabc6a5e/test_coverage)](https://codeclimate.com/github/flexper/sendi/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/6be8e53efc66aabc6a5e/maintainability)](https://codeclimate.com/github/flexper/sendi/maintainability) ![npm](https://img.shields.io/npm/v/sendi) ![npm](https://img.shields.io/npm/dm/sendi) ![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/sendi) ![NPM](https://img.shields.io/npm/l/sendi)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/0505e350e23c43359432/test_coverage)](https://codeclimate.com/github/flexper/sendim/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/0505e350e23c43359432/maintainability)](https://codeclimate.com/github/flexper/sendim/maintainability) ![npm](https://img.shields.io/npm/v/sendim) ![npm](https://img.shields.io/npm/dm/sendim) ![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/sendim) ![NPM](https://img.shields.io/npm/l/sendim)
 
-# Sendi
+# Sendim
 
 A simple library to send email cross providers.
 
 ## Usage
 
 ```typescript
-import { Sendi } from 'sendi';
+import { Sendim } from 'sendim';
 
-const sendi = new Sendi();
+const sendim = new Sendim();
 
-await sendi.addTransport<SendiSampleProviderConfig>(SendiSampleProvider, {});
+await sendim.addTransport<SendimSampleProviderConfig>(SendimSampleProvider, {});
 
-await sendi.sendTransactionalMail({
+await sendim.sendTransactionalMail({
       templateId: 'test',
       to: [{
         email: 'test@test.fr'
@@ -24,15 +24,15 @@ await sendi.sendTransactionalMail({
     });
 ```
 
-### addTransport(sendiProvider, config?)
+### addTransport(sendimProvider, config?)
 
-Add transport to sendi
+Add transport to sendim
 
 ***Params***
 
 | Field Name    | Type                                     | Default  | Description         |
 | ------------- | ---------------------------------------- | -------- | ------------------- |
-| sendiProvider | Class implements SendiTransportInterface | required | Provider to use     |
+| sendimProvider | Class implements SendimTransportInterface | required | Provider to use     |
 | config        | object                                   | {}       | Config for provider |
 
 ### sendRawEmail(options)

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import Pino, {LevelWithSilent} from 'pino';
+import Pino, { LevelWithSilent } from 'pino';
 
 interface EmailInformation {
   email: string;
@@ -26,9 +26,10 @@ export interface RawMailOptions extends MailOptions {
   subject: string;
 }
 
-export abstract class SendiTransportInterface {
+export abstract class SendimTransportInterface {
   providerName!: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
   constructor(_config: object) {}
 
   isHealthy!: () => Promise<boolean>;
@@ -37,22 +38,26 @@ export abstract class SendiTransportInterface {
   sendTransactionalMail!: (options: TransactionalMailOptions) => Promise<void>;
 }
 
-
-export class Sendi {
+export class Sendim {
   transports: Record<string, unknown> = {};
   logger: Pino.BaseLogger;
 
-  constructor(log?: LevelWithSilent){
+  constructor(log?: LevelWithSilent) {
     this.logger = Pino({ level: log || 'info' });
   }
 
-  async addTransport<T>(transport: new (...args: any[]) => SendiTransportInterface, config: T) {
+  async addTransport<T>(
+    transport: new (...args: any[]) => SendimTransportInterface,
+    config: T,
+  ) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
-    const newTransport: SendiTransportInterface = new transport(config);
+    const newTransport: SendimTransportInterface = new transport(config);
 
     if (!(await newTransport.isHealthy())) {
-      this.logger.error(`[SENDI] Transport ${newTransport.providerName} is not healthy !`);
+      this.logger.error(
+        `[SENDIM] Transport ${newTransport.providerName} is not healthy !`,
+      );
       return;
     }
 
@@ -62,25 +67,27 @@ export class Sendi {
   async sendRawMail(options: RawMailOptions, transportName?: string) {
     const transportKeys = Object.keys(this.transports);
 
-    let transport: SendiTransportInterface;
+    let transport: SendimTransportInterface;
 
     if (transportName && this.transports[transportName]) {
-      transport = this.transports[transportName] as SendiTransportInterface;
+      transport = this.transports[transportName] as SendimTransportInterface;
     }
 
     //@ts-ignore
     if (!transport && transportKeys?.length > 0) {
-      transport = this.transports[0] as SendiTransportInterface;
+      transport = this.transports[0] as SendimTransportInterface;
     }
 
     //@ts-ignore
     if (!transport) {
-      this.logger.debug(`[SENDI] Send raw email`, options);
-    }else {
-      this.logger.debug(`[SENDI] Send raw email  (Transport: ${transport.providerName}) `, options);
+      this.logger.debug(`[SENDIM] Send raw email`, options);
+    } else {
+      this.logger.debug(
+        `[SENDIM] Send raw email  (Transport: ${transport.providerName}) `,
+        options,
+      );
       await transport.sendRawMail(options);
     }
-
   }
 
   async sendTransactionalMail(
@@ -89,24 +96,29 @@ export class Sendi {
   ) {
     const transportKeys = Object.keys(this.transports);
 
-    let transport: SendiTransportInterface;
+    let transport: SendimTransportInterface;
 
     if (transportName && this.transports[transportName]) {
-      transport = this.transports[transportName] as SendiTransportInterface;
+      transport = this.transports[transportName] as SendimTransportInterface;
     }
 
     //@ts-ignore
     if (!transport && transportKeys?.length > 0) {
-      transport = this.transports[0] as SendiTransportInterface;
+      transport = this.transports[0] as SendimTransportInterface;
     }
 
     //@ts-ignore
     if (!transport) {
-      this.logger.debug(`[SENDI] Send transactional email (Template: ${options.templateId})`, options);
-    }else {
-      this.logger.debug(`[SENDI] Send transactional email (Template: ${options.templateId} / Transport: ${transport.providerName}) `, options);
+      this.logger.debug(
+        `[SENDIM] Send transactional email (Template: ${options.templateId})`,
+        options,
+      );
+    } else {
+      this.logger.debug(
+        `[SENDIM] Send transactional email (Template: ${options.templateId} / Transport: ${transport.providerName}) `,
+        options,
+      );
       await transport.sendTransactionalMail(options);
     }
-
   }
 }
