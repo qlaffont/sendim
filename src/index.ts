@@ -104,7 +104,7 @@ export class Sendim {
 
     //@ts-ignore
     if (!transport && transportKeys?.length > 0) {
-      transport = this.transports[0] as SendimTransportInterface;
+      transport = this.transports[transportKeys[0]] as SendimTransportInterface;
     }
 
     //@ts-ignore
