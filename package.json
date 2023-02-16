@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -54,7 +54,8 @@
     "coverageReporters": [
       "lcov"
     ],
-    "preset": "ts-jest"
+    "preset": "ts-jest",
+    "testPathIgnorePatterns": ["./node_modules/"]
   },
   "devDependencies": {
     "@jest/globals": "29.4.3",
