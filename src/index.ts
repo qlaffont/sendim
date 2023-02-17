@@ -80,12 +80,14 @@ export class Sendim {
 
     //@ts-ignore
     if (!transport) {
-      this.logger.debug(`[SENDIM] Send raw email`, options);
+      this.logger.debug(`[SENDIM] Send raw email`);
+      this.logger.debug(options);
     } else {
       this.logger.debug(
         `[SENDIM] Send raw email  (Transport: ${transport.providerName}) `,
-        options,
       );
+      this.logger.debug(options);
+
       await transport.sendRawMail(options);
     }
   }
@@ -111,13 +113,14 @@ export class Sendim {
     if (!transport) {
       this.logger.debug(
         `[SENDIM] Send transactional email (Template: ${options.templateId})`,
-        options,
       );
+      this.logger.debug(options);
     } else {
       this.logger.debug(
         `[SENDIM] Send transactional email (Template: ${options.templateId} / Transport: ${transport.providerName}) `,
-        options,
       );
+      this.logger.debug(options);
+
       await transport.sendTransactionalMail(options);
     }
   }
