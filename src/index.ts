@@ -6,6 +6,12 @@ interface EmailInformation {
   name?: string;
 }
 
+interface EmailAttachment {
+  name: string;
+  contentType: string;
+  content: string;
+}
+
 type MailOptions = {
   to: EmailInformation[];
   cc?: EmailInformation[];
@@ -13,6 +19,7 @@ type MailOptions = {
 
   sender: EmailInformation;
   reply?: EmailInformation;
+  attachments?: EmailAttachment[];
 };
 
 export interface TransactionalMailOptions extends MailOptions {
