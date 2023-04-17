@@ -28,12 +28,47 @@ describe('Sendim', () => {
     expect(sendim.transports).toBeDefined();
     expect(Object.keys(sendim.transports)).toHaveLength(1);
 
-    sendim = new Sendim();
+    try {
+      await sendim.addTransport<SendimSampleProviderConfig>(
+        SendimSampleProvider,
+        { test: '' },
+      );
+    } catch (error) {
+      expect(sendim).toBeDefined();
+      expect(sendim.transports).toBeDefined();
+      expect(Object.keys(sendim.transports)).toHaveLength(1);
+    }
+
+    try {
+      sendim = new Sendim();
+
+      await sendim.addTransport<SendimSampleProviderConfig>(
+        SendimSampleProviderNotHealthy,
+        { test: '' },
+      );
+      // eslint-disable-next-line no-empty
+    } catch (error) {
+      expect(sendim).toBeDefined();
+      expect(sendim.transports).toBeDefined();
+      expect(Object.keys(sendim.transports)).toHaveLength(0);
+    }
+  });
+
+  it('should be able to remove transport', async () => {
+    const sendim = new Sendim();
 
     await sendim.addTransport<SendimSampleProviderConfig>(
-      SendimSampleProviderNotHealthy,
+      SendimSampleProvider,
       { test: '' },
     );
+
+    expect(sendim).toBeDefined();
+    expect(sendim.transports).toBeDefined();
+    expect(Object.keys(sendim.transports)).toHaveLength(1);
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    await sendim.removeTransport(new SendimSampleProvider({}).providerName);
 
     expect(sendim).toBeDefined();
     expect(sendim.transports).toBeDefined();

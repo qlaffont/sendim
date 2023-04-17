@@ -56,6 +56,7 @@ export class Sendim {
   async addTransport<T>(
     transport: new (...args: any[]) => SendimTransportInterface,
     config: T,
+    transportName?: string,
   ) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
@@ -65,10 +66,25 @@ export class Sendim {
       this.logger.error(
         `[SENDIM] Transport ${newTransport.providerName} is not healthy !`,
       );
-      return;
+      throw 'Transport is not healthy !';
+    }
+
+    if (this.transports[transportName || newTransport.providerName]) {
+      this.logger.error(
+        `[SAVIM] Provider ${
+          transportName || newTransport.providerName
+        } is not healthy !`,
+      );
+      throw 'Provider already exist !';
     }
 
     this.transports[newTransport.providerName] = newTransport;
+  }
+
+  async removeTransport(transportName: string) {
+    if (this.transports[transportName]) {
+      delete this.transports[transportName];
+    }
   }
 
   async sendRawMail(options: RawMailOptions, transportName?: string) {
