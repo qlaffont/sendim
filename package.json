@@ -29,15 +29,15 @@
     "access": "public"
   },
   "name": "sendim",
-  "author": "flexper",
+  "author": "qlaffont",
   "module": "dist/sendim.esm.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/flexper/sendim.git"
+    "url": "https://github.com/qlaffont/sendim.git"
   },
   "bugs": {
-    "url": "https://github.com/flexper/sendim/issues",
-    "email": "contact@flexper.fr"
+    "url": "https://github.com/qlaffont/sendim/issues",
+    "email": "contact@qlaffont.com"
   },
   "size-limit": [
     {

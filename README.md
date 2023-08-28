@@ -1,8 +1,8 @@
-[![Test Coverage](https://api.codeclimate.com/v1/badges/0505e350e23c43359432/test_coverage)](https://codeclimate.com/github/flexper/sendim/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/0505e350e23c43359432/maintainability)](https://codeclimate.com/github/flexper/sendim/maintainability) ![npm](https://img.shields.io/npm/v/sendim) ![npm](https://img.shields.io/npm/dm/sendim) ![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/sendim) ![NPM](https://img.shields.io/npm/l/sendim)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/0505e350e23c43359432/test_coverage)](https://codeclimate.com/github/qlaffont/sendim/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/0505e350e23c43359432/maintainability)](https://codeclimate.com/github/qlaffont/sendim/maintainability) ![npm](https://img.shields.io/npm/v/sendim) ![npm](https://img.shields.io/npm/dm/sendim) ![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/sendim) ![NPM](https://img.shields.io/npm/l/sendim)
 
 # Sendim
 
-A simple library to send email cross providers.
+A simple library to send email cross providers. Old Owner: [@flexper](https://github.com/flexper)
 
 ## Usage
 
