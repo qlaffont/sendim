@@ -83,6 +83,6 @@
     "typescript": "5.4.5"
   },
   "dependencies": {
-    "pino": "^8.10.0"
+    "pino": "^9.0.0"
   }
 }
