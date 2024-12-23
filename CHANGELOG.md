@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.2.215 (2024-12-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency pino to v9.6.0 ([#281](https://github.com/qlaffont/sendim/issues/281)) ([f790507](https://github.com/qlaffont/sendim/commit/f790507f2fc153831a45e83b402a2db3efde3325))
+
 ### 1.2.214 (2024-12-20)
 
 ### 1.2.213 (2024-12-16)
